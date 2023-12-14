@@ -5,8 +5,8 @@ export default function page() {
   return (
     <div className="flex w-full h-full items-center">
       <div className="flex-1 shadow-xl bg-white relative z-[100] h-full">
-        <div className="w-full p-3 shadow-xl flex items-center justify-between">
-          <h1>AI Chat Helper</h1>
+        <div className="w-full py-3 px-5 shadow-xl flex items-center justify-between">
+          <h1 className='font-bold tracking-wide' style={{fontSize:'calc(0.7rem + 0.5vw)'}}>AI Chat Helper</h1>
 
           <div className="flex items-center">
             <div className="bg-gray-200 h-[5vh] text-gray-400 flex items-center rounded-full py-2 px-4 mx-2">
