@@ -6,7 +6,7 @@ interface LayoutProps{
 
 export default function layout({children}:LayoutProps) {
   return (
-    <div>
+    <div className='w-full h-screen bg-black p-4'>
       {children}
     </div>
   )
