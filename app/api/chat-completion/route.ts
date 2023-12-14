@@ -1,20 +1,25 @@
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 
-const GET = async (req:Request) => {
-    const openai = new OpenAI({apiKey:''})
+const POST = async (req:Request) => {
+    const openai = new OpenAI({apiKey:process.env.OPEN_AI_API_KEY})
+    const body = await req.json()
+
+    const data = JSON.parse(body)
+    
     // const url = "https://api.openai.com/v1/chat/completions";
     try {
         const completion = await openai.chat.completions.create({
           messages: [
-            { role: "system", content: "You are a helpful assistant." },
+            { role: "system", content: data.message },
           ],
           model: "gpt-3.5-turbo",
         });
-        console.log(completion.choices[0])
+        return Response.json({message:completion.choices[0]})
     } catch (error) {
+        console.log(error)
        return new NextResponse('Internal Error', {status:401});
     }
 }
 
-export {GET}
+export {POST}
