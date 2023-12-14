@@ -1,5 +1,6 @@
 import React from "react";
 import Sidebar from "./_components/Sidebar";
+import SideBarItems from "@/utils/SidebarItems";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -8,7 +9,7 @@ interface LayoutProps {
 export default function layout({ children }: LayoutProps) {
   return (
     <div className="w-full h-screen bg-black p-4 flex items-center">
-      <Sidebar/>
+      <Sidebar Links={SideBarItems}/>
       <div className="bg-white flex-1 rounded-xl h-full">{children}</div>
     </div>
   );
