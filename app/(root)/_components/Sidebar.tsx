@@ -2,6 +2,7 @@ import React from 'react'
 import Logo from '@/public/Logo.svg'
 import Image from 'next/image'
 import { LucideIcon } from 'lucide-react'
+import SidebarItem from './SidebarItem';
 
 interface SidebarProps {
   Links: {
@@ -21,7 +22,18 @@ export default function Sidebar({Links}:SidebarProps) {
         />
 
         <div className="my-2">
-            
+            {
+                Links.map((link) => {
+                    return(
+                        <SidebarItem
+                            name={link.name}
+                            href={link.href}
+                            key={link.href}
+                            Icon={link.Icon}
+                        />
+                    )
+                })
+            }
         </div>
     </div>
   )
