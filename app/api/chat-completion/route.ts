@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 
-const POST = async (req:Request) => {
-    const openai = new OpenAI()
+const GET = async (req:Request) => {
+    const openai = new OpenAI({apiKey:''})
     // const url = "https://api.openai.com/v1/chat/completions";
     try {
         const completion = await openai.chat.completions.create({
@@ -17,4 +17,4 @@ const POST = async (req:Request) => {
     }
 }
 
-export {POST}
+export {GET}
