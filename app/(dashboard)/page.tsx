@@ -1,7 +1,8 @@
 'use client'
 import { cn } from '@/lib/utils'
-import { Bell, Info, Search, File, Mic, Send } from 'lucide-react'
-import React, { useState } from 'react'
+import { Bell, Info, Search, File, Mic, Send, Delete, Trash } from 'lucide-react'
+import React, { useEffect, useState } from 'react'
+import HistoryComp from './_components/History'
 
 const History = [
   {
@@ -24,10 +25,11 @@ const History = [
 
 export default function Page() {
   const [activeHistory, setActiveHistory] = useState(History[0].title)
+
   return (
     <div className="flex w-full h-full items-center">
       <div className="flex-1 shadow-xl bg-white flex flex-col relative z-[100] h-full">
-        <div className="w-full py-3 px-5 shadow-xl flex items-center justify-between">
+        <div className="w-full py-3 px-5 shadow-xl shadow-cyan-50 flex items-center justify-between">
           <h1
             className="font-bold tracking-wide"
             style={{ fontSize: "calc(0.7rem + 0.5vw)" }}
@@ -87,44 +89,10 @@ export default function Page() {
       </div>
 
       {/* History */}
-      <div className="sm:inline flex-[0.3] hidden h-full">
-        <div className="flex border-b-2 bg-white h-fit w-full p-4 items-center justify-between">
-          <h1
-            className="  font-bold tracking-wide"
-            style={{ fontSize: "calc(1rem + 0.5vw)" }}
-          >
-            History
-          </h1>
-          <p className='bg-gray-100 py-2 px-4 rounded-full text-[0.8rem]'>
-            6/50
-          </p>
-        </div>
-
-        {History.map((item) => {
-          let isActive = item.title == activeHistory
-          const handleClick = () => {
-            setActiveHistory(item.title)
-          }
-          return (
-            <div
-            onClick={handleClick}
-              className={cn(
-                "flex items-start rounded-xl cursor-pointer my-7 mx-2 duration-300 hover:bg-white hover:shadow-xl hover:py-4",
-                isActive && "bg-white shadow-xl py-4"
-              )}
-              key={item.title}
-            >
-              <input type="checkbox" className="mx-2 my-2" />
-              <div className="">
-                <h1 className="font-semibold">{item.title}</h1>
-                <p className="text-gray-400 text-[0.8rem] max-w-[200px]">
-                  {item.desc}
-                </p>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+        <HistoryComp
+          setActiveHistory={setActiveHistory}
+          activeHistory={activeHistory}
+        />
     </div>
   );
 }
